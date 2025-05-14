@@ -55,7 +55,7 @@ export default function ExpenseList({ expenses, onDelete }: ExpenseListProps) {
             </div>
             <div className="flex items-center space-x-3">
               <div className="text-lg font-semibold text-gray-900 dark:text-white">
-                ${expense.amount.toFixed(2)}
+              ₹{expense.amount.toFixed(2)}
               </div>
               <button 
                 onClick={() => expense.id && onDelete(expense.id)}

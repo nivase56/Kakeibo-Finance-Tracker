@@ -76,7 +76,7 @@ export default function RemainingBudget({ budget, expenses }: RemainingBudgetPro
           <div className="flex justify-between items-center mb-1">
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Overall</span>
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              ${remaining.total.toFixed(2)} / ${budget.total.toFixed(2)}
+            ₹{remaining.total.toFixed(2)} / ₹{budget.total.toFixed(2)}
             </span>
           </div>
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
@@ -97,7 +97,7 @@ export default function RemainingBudget({ budget, expenses }: RemainingBudgetPro
               <div className="flex justify-between items-center mb-1">
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{cat.label}</span>
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  ${remaining[cat.key].toFixed(2)} / ${budget[cat.key].toFixed(2)}
+                ₹{remaining[cat.key].toFixed(2)} / ₹{budget[cat.key].toFixed(2)}
                 </span>
               </div>
               <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">

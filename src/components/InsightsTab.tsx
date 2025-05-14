@@ -141,7 +141,7 @@ export default function InsightsTab({ expenses, budget }: InsightsTabProps) {
             <Pie data={pieData} options={{ maintainAspectRatio: false }} />
           </div>
           <div className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
-            Total spent: ${totalSpent.toFixed(2)}
+            Total spent:₹{totalSpent.toFixed(2)}
           </div>
         </div>
         
@@ -185,7 +185,7 @@ export default function InsightsTab({ expenses, budget }: InsightsTabProps) {
           <div className="p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
             <h4 className="font-medium text-blue-800 dark:text-blue-200">Daily Average</h4>
             <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
-              ${avgDailySpend.toFixed(2)}
+            ₹{avgDailySpend.toFixed(2)}
             </p>
             <p className="text-sm text-blue-700 dark:text-blue-300">
               Average daily spending this month
@@ -198,7 +198,7 @@ export default function InsightsTab({ expenses, budget }: InsightsTabProps) {
               {sortedCategories[0]}
             </p>
             <p className="text-sm text-purple-700 dark:text-purple-300">
-              ${categoryTotals[sortedCategories[0] as ExpenseCategory].toFixed(2)} spent
+            ₹{categoryTotals[sortedCategories[0] as ExpenseCategory].toFixed(2)} spent
             </p>
           </div>
           
@@ -206,7 +206,7 @@ export default function InsightsTab({ expenses, budget }: InsightsTabProps) {
           <div className="p-4 bg-amber-50 dark:bg-amber-900 rounded-lg">
             <h4 className="font-medium text-amber-800 dark:text-amber-200">Largest Expense</h4>
             <p className="text-2xl font-bold text-amber-800 dark:text-amber-200">
-              ${topExpense.amount.toFixed(2)}
+            ₹{topExpense.amount.toFixed(2)}
             </p>
             <p className="text-sm text-amber-700 dark:text-amber-300">
               {topExpense.description} ({format(new Date(topExpense.date), 'MMM d')})
@@ -223,7 +223,7 @@ export default function InsightsTab({ expenses, budget }: InsightsTabProps) {
               {budgetStatus.toFixed(0)}% Used
             </p>
             <p className={`text-sm ${budgetStatus > 90 ? 'text-red-700 dark:text-red-300' : 'text-green-700 dark:text-green-300'}`}>
-            ${((budget?.total ?? 0) - totalSpent).toFixed(2)} remaining
+            ₹{((budget?.total ?? 0) - totalSpent).toFixed(2)} remaining
             </p>
           </div>
           )}
