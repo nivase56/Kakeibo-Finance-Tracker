@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
 import { Budget } from '../types';
 import { format } from 'date-fns';
 
-export function useBudget() {
+export function   useBudget() {
   const [budget, setBudget] = useState<Budget | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -74,6 +75,25 @@ export function useBudget() {
     }
   };
 
+  const deleteBudget = async (id: string) => {
+    setIsLoading(true);
+    try {
+      const { error } = await supabase
+        .from('budgets')
+        .delete()
+        .eq('id', id); // id is now a UUID string
+  
+      if (error) throw error;
+      setBudget(null);
+    } catch (e) {
+      console.error('Error deleting budget:', e);
+      setError('Error deleting budget');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+
   useEffect(() => {
     fetchBudget();
   }, []);
@@ -83,6 +103,7 @@ export function useBudget() {
     isLoading,
     error,
     saveBudget,
-    refreshBudget: fetchBudget
+    refreshBudget: fetchBudget,
+    deleteBudget
   };
 }

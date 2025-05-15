@@ -10,8 +10,8 @@ export interface Expense {
 }
 
 export interface Budget {
-  id?: string;
-  month: string; // YYYY-MM
+  id?: string; // UUIDs are strings
+  month: string;
   total: number;
   needs: number;
   wants: number;

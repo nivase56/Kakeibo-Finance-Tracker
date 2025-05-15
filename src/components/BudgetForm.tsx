@@ -5,10 +5,12 @@ import { format } from 'date-fns';
 interface BudgetFormProps {
   budget: Budget | null;
   onSave: (budget: Budget) => Promise<void>;
+  onDelete: (id: string) => Promise<void>; // id is a string
   isLoading: boolean;
 }
 
-export default function BudgetForm({ budget, onSave, isLoading }: BudgetFormProps) {
+
+export default function BudgetForm({ budget, onSave, onDelete, isLoading }: BudgetFormProps) {
   const currentMonth = format(new Date(), 'yyyy-MM');
   const [total, setTotal] = useState('');
   const [needs, setNeeds] = useState('');
@@ -40,10 +42,28 @@ export default function BudgetForm({ budget, onSave, isLoading }: BudgetFormProp
     });
   };
   
+  const handleDelete = async () => {
+    if (budget?.id && window.confirm('Are you sure you want to delete this budget?')) {
+      await onDelete(budget.id); // no parseInt
+    }
+  };
+  
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="card">
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Monthly Budget</h3>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white">Monthly Budget</h3>
+          {budget?.id && (
+            <button 
+              type="button"
+              onClick={handleDelete}
+              className="text-sm text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+            >
+              Delete Budget
+            </button>
+          )}
+        </div>
         
         <div className="space-y-4">
           <div>

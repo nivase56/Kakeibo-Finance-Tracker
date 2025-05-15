@@ -12,6 +12,7 @@ import InsightsTab from "../components/InsightsTab";
 import { Budget, Expense } from "@/lib/types";
 import editSvg from "../../public/edit-button.svg";
 import Image from "next/image";
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
   const {
@@ -22,18 +23,24 @@ export default function Home() {
   } = useExpenses();
   const [showExpenseForm, setShowExpenseForm] = useState(false);
 
-  const { budget, isLoading: budgetLoading, saveBudget } = useBudget();
+  const { 
+    budget, 
+    isLoading: budgetLoading, 
+    saveBudget,
+    deleteBudget 
+  } = useBudget();
+  
   console.log(expensesLoading, expenses);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(expenses, "Test");
     
-    if(expenses.length > 0 ){
-      setShowExpenseForm(false)
-    }else{
-      setShowExpenseForm(true)
+    if(expenses.length > 0) {
+      setShowExpenseForm(false);
+    } else {
+      setShowExpenseForm(true);
     }
-  },[expenses])
+  }, [expenses]);
 
   const handleAddExpense = async (
     newExpense: Omit<Expense, "id" | "createdAt">
@@ -47,6 +54,10 @@ export default function Home() {
 
   const handleSaveBudget = async (newBudget: Budget) => {
     await saveBudget(newBudget);
+  };
+
+  const handleDeleteBudget = async (id: string) => {
+    await deleteBudget(id);
   };
 
   return (
@@ -89,6 +100,7 @@ export default function Home() {
               budget={budget}
               onSave={handleSaveBudget}
               isLoading={budgetLoading}
+              onDelete={handleDeleteBudget}
             />
           </div>
           <div>
