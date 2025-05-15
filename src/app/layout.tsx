@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   icons: {
-    apple: '/icons/icon-192x192.png',
+    apple: "/icons/icon-192x192.png",
   },
 };
 
@@ -40,7 +40,10 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div
+          className="min-h-screen p-safe bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
+          style={{ paddingTop: "env(safe-area-inset-top)" }}
+        >
           <LockScreen />
           {children}
         </div>
