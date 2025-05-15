@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     title: "Kakeibo",
     statusBarStyle: "black-translucent",
   },
+  icons: {
+    apple: '/icons/icon-192x192.png',
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="../../public/manifest.json" />
         <link rel="icon" href="./favicon.ico" sizes="any" />
         <meta name="theme-color" content="#0f172a" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
