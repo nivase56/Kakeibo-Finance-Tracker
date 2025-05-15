@@ -30,7 +30,7 @@ export default function BudgetForm({ budget, onSave, isLoading }: BudgetFormProp
     e.preventDefault();
     
     await onSave({
-      id: budget?.id,
+      id: budget?.id || undefined, // This is the key fix - don't pass null or undefined explicitly
       month: currentMonth,
       total: parseFloat(total) || 0,
       needs: parseFloat(needs) || 0,

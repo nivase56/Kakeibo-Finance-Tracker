@@ -36,20 +36,34 @@ export function useBudget() {
         // Update existing budget
         const { data, error } = await supabase
           .from('budgets')
-          .update(newBudget)
+          .update({
+            month: newBudget.month,
+            total: newBudget.total,
+            needs: newBudget.needs,
+            wants: newBudget.wants,
+            culture: newBudget.culture,
+            unexpected: newBudget.unexpected
+          })
           .eq('id', budget.id)
           .select();
-
+  
         if (error) throw error;
         
         setBudget(data[0]);
       } else {
-        // Create new budget
+        // Create new budget - omit the id field entirely to let the database generate it
         const { data, error } = await supabase
           .from('budgets')
-          .insert([newBudget])
+          .insert([{
+            month: newBudget.month,
+            total: newBudget.total,
+            needs: newBudget.needs,
+            wants: newBudget.wants,
+            culture: newBudget.culture,
+            unexpected: newBudget.unexpected
+          }])
           .select();
-
+  
         if (error) throw error;
         
         setBudget(data[0]);
